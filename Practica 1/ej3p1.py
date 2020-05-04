@@ -1,0 +1,5 @@
+frase=input('ingrese una frase')
+nuevo= frase.upper()
+print(nuevo)
+lis = frase.upper().replace("\n","").replace(",","").split(" ")
+print(lis)
