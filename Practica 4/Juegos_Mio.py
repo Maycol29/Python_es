@@ -40,7 +40,6 @@ def modificar(jugador,event):
     escribirArchivo(jugadores)
 
 
-
 def elijoJuego(nombre):
     layout = [
     [sg.Button("Ahorcado") , sg.Button("TaTeTi") , sg.Button("Reverse")],
