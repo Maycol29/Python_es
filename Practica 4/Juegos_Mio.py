@@ -101,7 +101,12 @@ while ok:
             elijoJuego(values["nombre"])
             break
         
-    
+#Preguntas teoricas
+ #justificar la estructura de datos a utilizar
+ # utilize un diccionario de diccionarios ya que es mas facil acceder a los datos dependiendo cual dato necesite,si es el nombre por la key,sino con el nombre sacar edad y el juego que jugo
+ 
+ # Elegir y justificar el formato de archivo a utilizar.
+ # utilize json ya que es una manera muy facil de manejar los datos del mismo, ya sea para leer o escribir       
     
 
 
