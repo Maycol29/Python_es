@@ -99,6 +99,7 @@ while ok:
             window.Close()
             elijoJuego(values["nombre"])
             break
+
         
 #Preguntas teoricas
  #justificar la estructura de datos a utilizar

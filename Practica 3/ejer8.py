@@ -1,7 +1,8 @@
 def funcion1(*args):
     cont=0
+    equi=[]
     for arg in args:
-         cont=cont+1
+         equi=equi+[arg]
     return cont
 
 

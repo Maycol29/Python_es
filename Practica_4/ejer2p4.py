@@ -3,23 +3,21 @@ import json
 
 
 
-archivo=open("Jugadores.json","w")
-layout=[[sg.Text("ingresa id del jugador "),sg.InputText(key="nombre")],
-[sg.Text("ingresa el nivel del jugador"),sg.InputText(key="nivel")],
-[sg.Text("ingresar puntaje maximo "),sg.InputText(key="puntaje")],
-[sg.Text("ingrese tiempo de juego en horas"),sg.InputText(key="tiempo")],
+layout=[[sg.Text("ingresa id del jugador "),sg.InputText(key="nombre",do_not_clear=False)],
+[sg.Text("ingresa el nivel del jugador"),sg.InputText(key="nivel",do_not_clear=False)],
+[sg.Text("ingresar puntaje maximo "),sg.InputText(key="puntaje",do_not_clear=False)],
+[sg.Text("ingrese tiempo de juego en horas"),sg.InputText(key="tiempo",do_not_clear=False)],
 [sg.Button("Añadir o modificar"),sg.Exit()]]
 
-
-def leerArchivo():
+def leer_archivo():
     # Tarea: Pensar como manejar exceptions aca
     try:
-        with open("jugadores.json", 'r') as archivo:
+        with open('jugadores.json', 'r') as archivo:
             datos = json.load(archivo)
         return datos  
     
     except FileNotFoundError:
-        with open("jugadores.json", 'w') as archivo:
+        with open('jugadores.json', 'w') as archivo:
             datos={}
             json.dump(datos, archivo)        
         return datos
@@ -32,10 +30,10 @@ def escribirArchivo(datos):
     
 
 def cargar(values):
-    jugadores=leerArchivo()
+    jugadores=leer_archivo()
     nombre=str(values["nombre"]).lower()
     if nombre in jugadores.keys():
-        if (int(values["puntaje"]<jugadores["nombre"]["puntaje"])):
+        if (int(values["puntaje"]))<int(jugadores[nombre]["puntaje"]):
             values["puntaje"]=jugadores["nombre"]["puntaje"]
         jugadores[nombre] = {
         'puntaje': int(values['puntaje']),
@@ -43,9 +41,9 @@ def cargar(values):
         'tiempo': int(values['tiempo'])}
     else:
         jugadores[nombre] = {
-                'puntaje': int(values['_puntaje_']),
-                'nivel': int(values['_nivel_']),
-                'tiempo': int(values['_tiempo_'])
+                'puntaje': int(values['puntaje']),
+                'nivel': int(values['nivel']),
+                'tiempo': int(values['tiempo'])
             }
     escribirArchivo(jugadores)
 
@@ -61,10 +59,11 @@ while ok:
     #print(values)
     jugador={}
     if event is None or event == 'Exit':
-        archivo.close()
         ok = False
     elif event == 'Añadir o modificar':
           if values["nombre"]== "" or values["nivel"]=="" or values["puntaje"]=="" or values["tiempo"]=="":
             sg.Popup('Falta completar algun campo')
           else:
             cargar(values)
+            
+        
